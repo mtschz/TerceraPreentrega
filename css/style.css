@@ -1,0 +1,15 @@
+:root {
+    /* dark mode */
+    --text: #cfcdfe;
+    --background: #030132;
+    --primary-button: #46027e;
+    --secondary-button: #460143;
+    --accent: #190018;
+    
+    /* light mode */
+    --text: #020204;
+    --background: #f0eff6;
+    --primary-button: #460143;
+    --secondary-button: #f5f4fa;
+    --accent: #46027e; 
+}
