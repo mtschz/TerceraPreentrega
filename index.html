@@ -4,15 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>/title>
+    <title></title>
 </head>
 <body>
     <header>
+        <img src="img/nav_logo.PNG" alt="Logo">
     </header>
+    <aside>
+        <h2>Filtrar</h2>
+  
+        <div class="filter">
+          <h3>Material</h3>
+          <ul id="listaMateriales">
+
+          </ul>
+        </div>
+        
+        <div class="filter">
+          <h3>Tipo</h3>
+          <ul id="listaTipos">
+            
+          </ul>
+        </div>
+        
+        <div class="filter">
+          <h3>Precio</h3>
+          <input type="number" name="precioMin" placeholder="Precio mínimo">
+          <input type="number" name="precioMax" placeholder="Precio máximo">
+        </div>
+        
+        <button type="submit">Filtrar</button>
+    </aside>
     <section>
         <h1>Catalogo de productos</h1>
     </section>
-    <section>
+    <section id="catalogo" class="catalogo">
+
     </section>
+    <script src="js/main.js"></script>
 </body>
 </html>
