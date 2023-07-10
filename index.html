@@ -3,44 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <title></title>
 </head>
 <body>
     <header>
-        <img src="img/nav_logo.PNG" alt="Logo">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3 justify-content-center">
+                <img src="img/nav_logo.PNG" alt="Logo" class="logo align-self-start">
+                <div class="form-check form-switch d-flex justify-content-end">
+                  <input class="form-check-input" type="checkbox" role="switch" id="theme-toggle">
+                  <label class="form-check-label" for="theme-toggle">Tema oscuro</label>
+                </div>
+        </nav>
     </header>
-    <aside>
-        <h2>Filtrar</h2>
-  
-        <div class="filter">
-          <h3>Material</h3>
-          <ul id="listaMateriales">
-
-          </ul>
-        </div>
-        
-        <div class="filter">
-          <h3>Tipo</h3>
-          <ul id="listaTipos">
-            
-          </ul>
-        </div>
-        
-        <div class="filter">
-          <h3>Precio</h3>
-          <input type="number" name="precioMin" placeholder="Precio mínimo">
-          <input type="number" name="precioMax" placeholder="Precio máximo">
-        </div>
-        
-        <button type="submit">Filtrar</button>
-    </aside>
-    <section>
+    <section class="col-lg-12 text-center">
         <h1>Catalogo de productos</h1>
     </section>
-    <section id="catalogo" class="catalogo">
+    <div class="container">
+        <div class="row">
+            <aside class="col-lg-2">
+                <h2>Filtrar</h2>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="filter">
+                            <h3>Material</h3>
+                            <ul id="listaMateriales">
 
-    </section>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="filter">
+                            <h3>Tipo</h3>
+                            <ul id="listaTipos">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="filter">
+                            <h3>Precio</h3>
+                            <input type="number" name="precioMin" placeholder="Precio mínimo" id="precioMin" class="form-control">
+                            <input type="number" name="precioMax" placeholder="Precio máximo" id="precioMax" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" id="filtrarPrecioBtn" class="btn btn-primary">Filtrar</button>
+            </aside>
+            <section class="col-lg-10">
+                <div class="row" id="catalogo">
+                </div>
+            </section>
+        </div>
+    </div>
     <script src="js/main.js"></script>
+    <script src="js/modoOscuro.js"></script>
 </body>
 </html>

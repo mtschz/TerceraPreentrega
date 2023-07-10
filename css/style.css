@@ -1,44 +1,41 @@
 :root {
-    /* dark mode */
-    --dark-text: #cfcdfe;
-    --dark-background: #030132;
-    --dark-primary-button: #46027e;
-    --dark-secondary-button: #460143;
-    --dark-accent: #190018;
-    --dark-border: 
-    
     /* light mode */
-    --light-text: #020204;
-    --light-background: #f0eff6;
-    --light-primary-button: #460143;
-    --light-secondary-button: #f5f4fa;
-    --light-accent: #46027e; 
-    --light-border: #bbbbbb; 
+    --text: #020204;
+    --background: #f0eff6;
+    --card: white;
+    --primary-button: #460143;
+    --primary-button-border: #30032d;
+    --primary-button-hover: #8b0d85;
+    --secondary-button: #f5f4fa;
+    --accent: #46027e; 
+    --border: #bbbbbb; 
+}
+.dark-theme {
+      /* dark mode */
+  --text: #cfcdfe;
+  --background: #11101b;
+  --card: #1c1b35;
+  --primary-button: #46027e;
+  --secondary-button: #460143;
+  --accent: #190018;
+  --border: #404046;
 }
 body {
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-areas: "header header header header" 
-                         "sidebar catalogo catalogo catalogo"
-                         "sidebar catalogo catalogo catalogo"
-    ;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 10vh auto auto;
-    background-color: var(--light-background);
-    gap: 1em;
+  background-color: var(--background) !important;
 }
-header {
-    grid-area: header;
-    display: inline-flex;
-    width:100%;
-    border-bottom: 1px solid var(--light-border);
-    justify-content: center;
-    background: white;
+.navbar {
+  height:15vh;
+    border-bottom: 1px solid var(--border)!important;
+    background: var(--background) !important;
+}
+.logo {
+  display: block;
+  max-height: 100%;
 }
 aside {
     grid-area: sidebar;
-    background-color: white;
+    background-color: var(--background) !important;
+    color: var(--text) !important;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -80,7 +77,6 @@ aside {
   }
   
   .filter-button {
-    background-color: #007bff;
     color: #ffffff;
     border: none;
     padding: 8px 16px;
@@ -90,7 +86,7 @@ aside {
   }
   
   .filter-button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-button-hover) !important;
   }
 .logo {
     display: block;
@@ -110,7 +106,7 @@ aside {
     width: 16em;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
+    background-color: var(--card);
     padding:0;
 }
 .card-img {
@@ -120,23 +116,28 @@ aside {
     display: block;
     margin:0;
 }
-button {
-    background-color: var(--dark-secondary-button);
+.btn {
+    background-color:   var(--primary-button);
     color: #ffffff;
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
     font-size: 14px;
     cursor: pointer;
+    
   }
+.btn:hover {
+  background-color:   var(--primary-button-hover);
+}
   .card-title {
+    color:var(--text);
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 5px;
   }
   .precio {
+    color:var(--text);
     font-size: 16px;
-    color: #333333;
     font-weight: bold;
   }

@@ -1,4 +1,7 @@
+let precioMax
+let precioMin
 let productosDisponibles = []
+let carrito = []
 let filtrado = []
 let tipos = ["Collar", "Pulsera", "Pendiente", "Anillo"]
 let materiales = ["Oro", "Plata", "Acero", "Plastico", "Hilo"]
@@ -22,16 +25,24 @@ productosDisponibles = [ArosPlata, PendientePerla, PendientesCorazonAzul, ArosAc
 let catalogo = document.getElementById("catalogo")
 let listaMateriales = document.getElementById("listaMateriales")
 let listaTipos = document.getElementById("listaTipos")
+let precioMinInput = document.getElementById("precioMin")
+let precioMaxInput = document.getElementById("precioMax")
+let filtrarPrecioBtn = document.getElementById("filtrarPrecioBtn")
+let btnCarrito = document.getElementsByClassName("btn-carrito")
 function mostrarCatalogo(array){
     for(let producto of array){
        let nuevoProductoDiv = document.createElement("div")
-       nuevoProductoDiv.className = "card"
-       nuevoProductoDiv.innerHTML = `<div id="${producto.nombre}" class="card">
-                                  <img src="img/${producto.img}" class="card-img" alt="${producto.nombre}">
-                                     <h4 class="card-title">${producto.nombre}</h4>
-                                     <p class="precio">$${producto.precio}</p>
-                                  <button id="${producto.nombre}"">Agregar al carrito</button>
-                               </div>`
+       nuevoProductoDiv.className = "col-lg-4 mb-2"
+       nuevoProductoDiv.innerHTML = `
+       <div class="card col-lg-12">
+       <img src="img/${producto.img}" class="card-img-top" alt="${producto.nombre}">
+       <div class="card-body">
+           <h4 class="card-title">${producto.nombre}</h4>
+           <p class="precio">$${producto.precio}</p>
+           <button id="${producto.nombre}" class="btn btn-carrito btn-primary">Agregar al carrito</button>
+       </div>
+     </div>
+   `
        catalogo.appendChild(nuevoProductoDiv)
     }
  }
@@ -117,6 +128,46 @@ listaTipos.addEventListener("change", function(event) {
       mostrarCatalogo(filtrado)
     }
    }
+
+precioMinInput.addEventListener("input", function () {
+   precioMin = parseInt(precioMinInput.value)
+}
+)
+precioMaxInput.addEventListener("input", function () {
+   precioMax = parseInt(precioMaxInput.value)
+})
+function filtrarPorPrecio(array){
+   filtrado = productosDisponibles.filter((producto) => {
+      return producto.precio >= precioMin && producto.precio <= precioMax
+    })
+    if(filtrado.length == 0) {
+      catalogo.innerHTML = ""
+      let noResultados = document.createElement("p")
+      noResultados.innerHTML = `<p>Lamentablemente ningun producto coincide con su busqueda</p>`
+      catalogo.appendChild(noResultados)
+    }
+    else {
+      catalogo.innerHTML = ""
+      mostrarCatalogo(filtrado)
+    }
+}
+filtrarPrecioBtn.addEventListener("click", function() {
+      filtrarPorPrecio()
+})
+if(localStorage.getItem("carrito")){
+   for(let producto of JSON.parse(localStorage.getItem("carrito"))){
+      let productoStorage = new producto(producto.nombre, producto.tipo, producto.material, producto.img)
+      carrito.push(libroStorage)
+   }
+}
+else{
+   carrito = []
+   localStorage.setItem("carrito", carrito)
+}
+// btnCarrito.addEventListener("click", function( {
+
+// }))
+
 mostrarCatalogo(productosDisponibles)
 mostrarListaMateriales()
 mostrarListaTipos()
