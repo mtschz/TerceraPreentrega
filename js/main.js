@@ -1,3 +1,4 @@
+/*Estoy haciendo la pagina de una tienda de accesorios, por ahora se puede filtrar por material, tipo y en un intervalo de precio. Tambien se puede cambiar entre modo oscuro y claro. Todavia me falta agregar el carrito */
 let precioMax
 let precioMin
 let productosDisponibles = []
@@ -5,6 +6,7 @@ let carrito = []
 let filtrado = []
 let tipos = ["Collar", "Pulsera", "Pendiente", "Anillo"]
 let materiales = ["Oro", "Plata", "Acero", "Plastico", "Hilo"]
+// Clase constructora
 class producto{
     constructor(nombre, tipo, material, precio, img, descripcion){
        this.nombre = nombre
@@ -29,6 +31,7 @@ let precioMinInput = document.getElementById("precioMin")
 let precioMaxInput = document.getElementById("precioMax")
 let filtrarPrecioBtn = document.getElementById("filtrarPrecioBtn")
 let btnCarrito = document.getElementsByClassName("btn-carrito")
+// Genera una card en el HTML para cada producto de un array
 function mostrarCatalogo(array){
     for(let producto of array){
        let nuevoProductoDiv = document.createElement("div")
@@ -46,6 +49,7 @@ function mostrarCatalogo(array){
        catalogo.appendChild(nuevoProductoDiv)
     }
  }
+ // Hace un checkbox para cada material 
  function mostrarListaMateriales(){
    for(let item of materiales){
       let nuevoMaterialLi = document.createElement("li")
@@ -58,6 +62,7 @@ function mostrarCatalogo(array){
     listaMateriales.appendChild(nuevoMaterialLi)   
    }
 }
+// Esta funcion detecta cambios en los checkbox de listaMateriales y si alguno de ellos esta checkedo se muestran los productos de ese material
 listaMateriales.addEventListener("change", function(event) {
    const target = event.target
    if (target.nodeName === "INPUT" && target.type === "checkbox") {
@@ -71,6 +76,7 @@ listaMateriales.addEventListener("change", function(event) {
       }
    }
 })
+// Hace un checkbox para cada tipo
 function mostrarListaTipos(){
    for(let item of tipos){
       let nuevoTipoLi = document.createElement("li")
@@ -83,6 +89,7 @@ function mostrarListaTipos(){
     listaTipos.appendChild(nuevoTipoLi)   
    }
 }
+// Detecta cambios en los checkbox de listaTipos y si alguno de ellos esta checkedo se muestran los productos de ese tipo
 listaTipos.addEventListener("change", function(event) {
    const target = event.target
    if (target.nodeName === "INPUT" && target.type === "checkbox") {
@@ -96,7 +103,7 @@ listaTipos.addEventListener("change", function(event) {
       }
    }
 })
-
+// Busca los productos que tengan ese tipo como propiedad. Si no hay ninguno, devuelve un texto diciendo que la busqueda no tuvo resultados. De lo contrario, muestra los productos encontrdos.
  function filtrarPorTipo(tipo) {
    filtrado = productosDisponibles.filter((producto) => {
       return producto.tipo == tipo
@@ -113,6 +120,7 @@ listaTipos.addEventListener("change", function(event) {
     }
     
  }
+ // Busca los productos que tengan ese material como propiedad. Si no hay ninguno, devuelve un texto diciendo que la busqueda no tuvo resultados. De lo contrario, muestra los productos encontrdos.
  function filtrarPorMaterial(material) {
    filtrado = productosDisponibles.filter((producto) => {
       return producto.material == material
@@ -136,6 +144,7 @@ precioMinInput.addEventListener("input", function () {
 precioMaxInput.addEventListener("input", function () {
    precioMax = parseInt(precioMaxInput.value)
 })
+// Esta funcion busca los productos cuyos precios se encuentren entre los precios ingresados por el usuario.
 function filtrarPorPrecio(array){
    filtrado = productosDisponibles.filter((producto) => {
       return producto.precio >= precioMin && producto.precio <= precioMax
@@ -154,20 +163,6 @@ function filtrarPorPrecio(array){
 filtrarPrecioBtn.addEventListener("click", function() {
       filtrarPorPrecio()
 })
-if(localStorage.getItem("carrito")){
-   for(let producto of JSON.parse(localStorage.getItem("carrito"))){
-      let productoStorage = new producto(producto.nombre, producto.tipo, producto.material, producto.img)
-      carrito.push(libroStorage)
-   }
-}
-else{
-   carrito = []
-   localStorage.setItem("carrito", carrito)
-}
-// btnCarrito.addEventListener("click", function( {
-
-// }))
-
 mostrarCatalogo(productosDisponibles)
 mostrarListaMateriales()
 mostrarListaTipos()
